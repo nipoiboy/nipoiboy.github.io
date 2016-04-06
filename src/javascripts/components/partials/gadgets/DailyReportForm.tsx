@@ -58,7 +58,7 @@ export class DailyReportForm extends React.Component<Props, State> {
         <h1 className={c.heading}>ニッポーイボーイ</h1>
         <div className={c.row}>
           <div className={c.nameColumn}>
-            <label>氏名 (*)
+            <label>(*) 氏名
               <Input
                 value={state.name}
                 onChange={this.buildChangeHandler('name')}
@@ -125,17 +125,17 @@ export class DailyReportForm extends React.Component<Props, State> {
 function buildItems(state: State): Item[][] {
   return [
     [
-      { label: '本日の業務 (*)',
+      { label: '(*) 本日の業務',
         value: state.firstContent,
         stateKey: 'firstContent',
       },
-      { label: '明日の業務 (*)',
+      { label: '(*) 明日の業務',
         value: state.secondContent,
         stateKey: 'secondContent',
       },
     ],
     [
-      { label: '本日の業務で気付いたこと・学んだこと (*)',
+      { label: '(*) 本日の業務で気付いたこと・学んだこと',
         value: state.thirdContent,
         stateKey: 'thirdContent',
       },

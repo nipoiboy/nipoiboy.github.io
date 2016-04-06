@@ -9,16 +9,14 @@ import {IndexView} from '../views/IndexView';
 export class IndexController extends React.Component<any, any> {
   render() {
     return (
-      <IndexView
-        onDailyReportSubmit={this.handleDailyReportSubmit}
-      />
+      <IndexView　onDailyReportSubmit={this.handleDailyReportSubmit} />
     );
   }
 
   private handleDailyReportSubmit = (report: DailyReport) => {
     const to = 'hr-development@mixi.co.jp';
     const cc = '16shinsotsu-all@mixi.co.jp';
-    const subject = `【日報】${today()} 16新卒 ${report.name}`;
+    const subject = `【日報】${today()} 16新卒　${report.name}`;
     const requiredBody = buildRequiredBody(report);
     const optionalBody = buildOptionalBody(report);
     const body = requiredBody + optionalBody;
