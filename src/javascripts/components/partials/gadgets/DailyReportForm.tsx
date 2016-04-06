@@ -39,10 +39,12 @@ const RequiredValueKeys = [
 
 const c = BEM('DailyReportForm', (block, element) => ({
   root: block(),
+  inner: element('inner'),
   heading: element('heading'),
   row: element('row'),
   column: element('column'),
   nameColumn: element('column name'),
+  label: element('label'),
   submitRow: element('row submit'),
 }));
 
@@ -55,38 +57,40 @@ export class DailyReportForm extends React.Component<Props, State> {
     const {state} = this;
     return (
       <form className={c.root} onSubmit={this.handleSubmit}>
-        <h1 className={c.heading}>ニッポーイボーイ</h1>
-        <div className={c.row}>
-          <div className={c.nameColumn}>
-            <label>(*) 氏名
+        <div className={c.inner}>
+          <h1 className={c.heading}>ニッポーイボーイ</h1>
+          <div className={c.row}>
+            <div className={c.nameColumn}>
+              <label className={c.label} htmlFor="name">(*) 氏名</label>
               <Input
+                id="name"
                 value={state.name}
                 onChange={this.buildChangeHandler('name')}
                 hasError={includes(state.errorValueKeys, 'name')}
                 maximized
               />
-            </label>
+            </div>
           </div>
-        </div>
-        {buildItems(state).map((items, i) =>
-          <div key={i} className={c.row}>
-            {items.map((item) =>
-              <div key={item.label} className={c.column}>
-                <label>{item.label}
+          {buildItems(state).map((items, i) =>
+            <div key={i} className={c.row}>
+              {items.map((item) =>
+                <div key={item.label} className={c.column}>
+                  <label className={c.label} htmlFor={item.stateKey}>{item.label}</label>
                   <TextArea
+                    id={item.stateKey}
                     rows={10}
                     placeholder={item.placeholder}
                     value={item.value}
                     hasError={includes(state.errorValueKeys, item.stateKey)}
                     onChange={this.buildChangeHandler(item.stateKey)}
                   />
-                </label>
-              </div>
-            )}
+                </div>
+              )}
+            </div>
+          )}
+          <div className={c.submitRow}>
+            <Button type="submit" skin="primary" maximized>メールを作成（ポイ）</Button>
           </div>
-        )}
-        <div className={c.submitRow}>
-          <Button type="submit" skin="primary" maximized>メールを作成（ポイ）</Button>
         </div>
       </form>
     );
@@ -140,7 +144,7 @@ function buildItems(state: State): Item[][] {
         stateKey: 'thirdContent',
       },
       { label: 'その他',
-        placeholder: '今日頑張っていた人などをあげてみよう（ポイ）',
+        placeholder: '今日頑張っていた人などをあげてみよう！（ポイ）',
         value: state.fourthContent,
         stateKey: 'fourthContent',
       },

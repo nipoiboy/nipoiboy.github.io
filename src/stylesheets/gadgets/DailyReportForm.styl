@@ -4,14 +4,19 @@
   &
     container()
 
+  &__inner
+    margin: 50px 0
+
   &__heading
-    margin-top: 20px
+    margin-bottom: 20px
     font-size: 1.3rem
     font-weight: bold
     text-align: center
 
   &__row
     display: flex
+    +mobile()
+      display: block
     & + &
       margin-top: 20px
     &.submit
@@ -20,14 +25,13 @@
   &__column
     &:not(.name)
       flex: 1
-      margin: 0 1em
+      & + &
+        margin-left: 1.5em
+        +mobile()
+          margin: 0
     &.name
-      width: 500px
+      flex: 1
       margin: 0 auto
 
-  &__name-column
-    width: 500px
-    margin: 0 auto
-
-  &__textarea
-    height: 20em
+  &__label
+    font-weight: bold

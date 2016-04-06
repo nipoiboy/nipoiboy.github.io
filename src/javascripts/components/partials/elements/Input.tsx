@@ -5,6 +5,7 @@ import * as React from 'react';
 import {BEM} from '../../../misc/BEM';
 
 export interface Props extends React.Props<any> {
+  id?: string;
   type?: string;
   value?: string;
   placeholder?: string;
@@ -26,6 +27,7 @@ export class Input extends React.Component<Props, any> {
     const {props} = this;
     return (
       <input
+        id={props.id}
         className={c.root(props)}
         type={props.type}
         value={props.value}

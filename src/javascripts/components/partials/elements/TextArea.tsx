@@ -5,6 +5,7 @@ import * as React from 'react';
 import {BEM} from '../../../misc/BEM';
 
 export interface Props extends React.Props<any> {
+  id?: string;
   cols?: number;
   rows?: number;
   value?: string;
@@ -24,6 +25,7 @@ export class TextArea extends React.Component<Props, any> {
     const {props} = this;
     return (
       <textarea
+        id={props.id}
         className={c.root(props)}
         cols={props.cols}
         rows={props.rows}
