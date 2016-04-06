@@ -16,14 +16,23 @@ export class IndexController extends React.Component<any, any> {
   }
 
   private handleDailyReportSubmit = (report: DailyReport) => {
-    const to = 'hr-development@mixi.co.jp';
-    const cc = '16shinsotsu-all@mixi.co.jp';
-    const subject = encodeURIComponent(`【日報】${today()} 16新卒　${report.name}`);
-    const requiredBody = buildRequiredBody(report);
-    const optionalBody = buildOptionalBody(report);
-    const body = encodeURIComponent(requiredBody + optionalBody);
+    const { to, cc, subject, body } = buildMailComponents(report);
     const href = `mailto:${to}?cc=${cc}&subject=${subject}&body=${body}`;
     location.href = href;
+  };
+}
+
+function buildMailComponents(report: DailyReport) {
+  const to = 'hr-development@mixi.co.jp';
+  const cc = '16shinsotsu-all@mixi.co.jp';
+  const subject = `【日報】${today()} 16新卒　${report.name}`;
+  const requiredBody = buildRequiredBody(report);
+  const optionalBody = buildOptionalBody(report);
+  return {
+    to,
+    cc,
+    subject: encodeURIComponent(subject),
+    body: encodeURIComponent(requiredBody + optionalBody),
   };
 }
 
