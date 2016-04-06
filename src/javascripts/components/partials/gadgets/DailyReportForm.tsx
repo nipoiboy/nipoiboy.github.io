@@ -22,6 +22,13 @@ interface State {
   fourthContent?: string;
 }
 
+interface Item {
+  label: string;
+  stateKey: string;
+  placeholder?: string;
+  value?: string;
+}
+
 const RequiredValueKeys = [
   'name',
   'firstContent',
@@ -33,6 +40,8 @@ const c = BEM('DailyReportForm', (block, element) => ({
   root: block(),
   heading: element('heading'),
   row: element('row'),
+  column: element('column'),
+  nameColumn: element('column name'),
   submitRow: element('row submit'),
 }));
 
@@ -45,44 +54,30 @@ export class DailyReportForm extends React.Component<Props, State> {
       <form className={c.root} onSubmit={this.handleSubmit}>
         <h1 className={c.heading}>ニッポーイボーイ</h1>
         <div className={c.row}>
-          <label>名前 (*)
-            <Input
-              value={state.name}
-              onChange={this.buildChangeHandler('name')}
-            />
-          </label>
-        </div>
-        {[
-          { label: '本日の業務 (*)',
-            placeholder: '',
-            value: state.firstContent,
-            stateKey: 'firstContent',
-          },
-          { label: '明日の業務 (*)',
-            placeholder: '',
-            value: state.secondContent,
-            stateKey: 'secondContent',
-          },
-          { label: '本日の業務で気付いたこと・学んだこと (*)',
-            placeholder: '',
-            value: state.thirdContent,
-            stateKey: 'thirdContent',
-          },
-          { label: 'その他',
-            placeholder: '今日頑張っていた人などをあげてみよう（ポイ）',
-            value: state.fourthContent,
-            stateKey: 'fourthContent',
-          },
-        ].map((item) =>
-          <div key={item.label} className={c.row}>
-            <label>{item.label}
-              <TextArea
-                rows={10}
-                placeholder={item.placeholder}
-                value={item.value}
-                onChange={this.buildChangeHandler(item.stateKey)}
+          <div className={c.nameColumn}>
+            <label>氏名 (*)
+              <Input
+                value={state.name}
+                onChange={this.buildChangeHandler('name')}
+                maximized
               />
             </label>
+          </div>
+        </div>
+        {buildItems(state).map((items, i) =>
+          <div key={i} className={c.row}>
+            {items.map((item) =>
+              <div key={item.label} className={c.column}>
+                <label>{item.label}
+                  <TextArea
+                    rows={10}
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={this.buildChangeHandler(item.stateKey)}
+                  />
+                </label>
+              </div>
+            )}
           </div>
         )}
         <div className={c.submitRow}>
@@ -99,11 +94,43 @@ export class DailyReportForm extends React.Component<Props, State> {
       return;
     }
     if (RequiredValueKeys.every((key) => (state as any)[key] != null)) {
-      props.onSubmit(this.state as any);
+      props.onSubmit({
+        name: state.name,
+        firstContent: state.firstContent,
+        secondContent: state.secondContent,
+        thirdContent: state.thirdContent,
+        fourthContent: state.fourthContent,
+      });
     }
   };
 
   private buildChangeHandler(key: string) {
     return (value: string) => this.setState({[key]: value});
   }
+}
+
+function buildItems(state: State): Item[][] {
+  return [
+    [
+      { label: '本日の業務 (*)',
+        value: state.firstContent,
+        stateKey: 'firstContent',
+      },
+      { label: '明日の業務 (*)',
+        value: state.secondContent,
+        stateKey: 'secondContent',
+      },
+    ],
+    [
+      { label: '本日の業務で気付いたこと・学んだこと (*)',
+        value: state.thirdContent,
+        stateKey: 'thirdContent',
+      },
+      { label: 'その他',
+        placeholder: '今日頑張っていた人などをあげてみよう（ポイ）',
+        value: state.fourthContent,
+        stateKey: 'fourthContent',
+      },
+    ],
+  ];
 }

@@ -8,13 +8,16 @@ export interface Props extends React.Props<any> {
   type?: string;
   value?: string;
   placeholder?: string;
+  maximized?: boolean;
   hasError?: boolean;
   onChange?(value: string): any;
 }
 
 const c = BEM('Input', (block, element) => ({
   root: (props: Props) => block([
-    {'has-error': props.hasError}
+    { maximized: props.maximized,
+      'has-error': props.hasError
+    },
   ]),
 }));
 

@@ -2,11 +2,7 @@
   FormWidth = 500px
 
   &
-    width: FormWidth
-    margin: 50px auto
-    +mobile()
-      width: 100%
-      padding: 0 10px
+    container()
 
   &__heading
     margin-top: 20px
@@ -15,10 +11,23 @@
     text-align: center
 
   &__row
+    display: flex
     & + &
       margin-top: 20px
     &.submit
       height: Const.Height.Large
+
+  &__column
+    &:not(.name)
+      flex: 1
+      margin: 0 1em
+    &.name
+      width: 500px
+      margin: 0 auto
+
+  &__name-column
+    width: 500px
+    margin: 0 auto
 
   &__textarea
     height: 20em
