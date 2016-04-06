@@ -1,0 +1,24 @@
+.DailyReportForm
+  FormWidth = 500px
+
+  &
+    width: FormWidth
+    margin: 50px auto
+    +mobile()
+      width: 100%
+      padding: 0 10px
+
+  &__heading
+    margin-top: 20px
+    font-size: 1.3rem
+    font-weight: bold
+    text-align: center
+
+  &__row
+    & + &
+      margin-top: 20px
+    &.submit
+      height: Const.Height.Large
+
+  &__textarea
+    height: 20em

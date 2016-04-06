@@ -1,0 +1,101 @@
+.Button
+  DefaultHeight = Const.Height.Normal
+  SmallHeight = Const.Height.Small
+  LargeHeight = Const.Height.Large
+  DefaultPadding = 13px
+  SmallPadding = 10px
+  LargePadding = 18px
+  BorderWidth = 1px
+  RoundShapeRadius = 3px
+  TransitionDuration = .12s
+  DefaultSkinColor = darken(Const.Color.LightGray, 10%)
+
+  applyOutlinedSkin(borderColor, fontColor = borderColor)
+    background-color transparent
+    border BorderWidth solid borderColor
+    color fontColor
+    transition background-color TransitionDuration ease, color TransitionDuration ease
+    &:hover
+      applySkin(borderColor)
+
+  applySkin(bgColor, fontColor = #fff)
+    background-color bgColor
+    color fontColor
+    transition background-color TransitionDuration ease
+    &:active
+      background-color darken(bgColor, 15%)
+
+  applySize(height, horizontalPadding)
+    &:not(.maximized)
+      height height
+      padding 0 horizontalPadding
+      line-height @height
+      &.shape_square, &.shape_circle
+        width @height
+      &.outlined
+        line-height (@height - BorderWidth * 2)
+      &.no-padding
+        padding 0
+
+  &
+    display inline-block
+    position relative
+    padding 0
+    appearance none
+    border none
+    cursor pointer
+    text-align center
+    &, &:focus
+      outline none
+    // Reset anchor style for AnchorButton
+    text-decoration none
+
+  &.maximized
+    display block
+    width 100%
+    height 100%
+    line-height inherit
+
+  &.shape
+    &_round
+      border-radius RoundShapeRadius
+    &_circle
+      border-radius 50%
+
+  &.skin
+    &_default
+      &:not(.outlined)
+        applySkin(DefaultSkinColor, darken(DefaultSkinColor, 40%))
+      &.outlined
+        applyOutlinedSkin(DefaultSkinColor, darken(DefaultSkinColor, 40%))
+    &_primary
+      &:not(.outlined)
+        applySkin(Const.Color.Cyan)
+      &.outlined
+        applyOutlinedSkin(Const.Color.Cyan)
+    &_success
+      &:not(.outlined)
+        applySkin(Const.Color.Green)
+      &.outlined
+        applyOutlinedSkin(Const.Color.Green)
+    &_warning
+      &:not(.outlined)
+        applySkin(Const.Color.Yellow)
+      &.outlined
+        applyOutlinedSkin(Const.Color.Yellow)
+    &_danger
+      &:not(.outlined)
+        applySkin(Const.Color.Red)
+      &.outlined
+        applyOutlinedSkin(Const.Color.Red)
+
+  &.size
+    &_default
+      applySize(DefaultHeight, DefaultPadding)
+      font-size 1rem
+    &_small
+      applySize(SmallHeight, SmallPadding)
+      font-size .9rem
+    &_large
+      applySize(LargeHeight, LargePadding)
+      font-size 1.1rem
