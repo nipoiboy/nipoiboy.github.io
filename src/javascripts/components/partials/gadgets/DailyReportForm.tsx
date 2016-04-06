@@ -86,45 +86,42 @@ export class DailyReportForm extends React.Component<Props, State> {
     const {state} = this;
     return (
       <form className={c.root} onSubmit={this.handleSubmit}>
-        <div className={c.inner}>
-          <h1 className={c.heading}>ニッポーイボーイ</h1>
-          <div className={c.row}>
-            <div className={c.nameColumn}>
-              <label className={c.label(true)} htmlFor="name">氏名</label>
-              <Input
-                id="name"
-                value={state.name}
-                onChange={this.buildChangeHandler('name', StorageKeys.dailyReport.name)}
-                hasError={includes(state.errorValueKeys, 'name')}
-                maximized
-              />
-            </div>
+        <div className={c.row}>
+          <div className={c.nameColumn}>
+            <label className={c.label(true)} htmlFor="name">氏名</label>
+            <Input
+              id="name"
+              value={state.name}
+              onChange={this.buildChangeHandler('name', StorageKeys.dailyReport.name)}
+              hasError={includes(state.errorValueKeys, 'name')}
+              maximized
+            />
           </div>
-          {buildItems(state).map((items, i) =>
-            <div key={i} className={c.row}>
-              {items.map((item) =>
-                <div key={item.label} className={c.column}>
-                  <label
-                    className={c.label(item.required)}
-                    htmlFor={item.stateKey}
-                  >
-                    {item.label}
-                  </label>
-                  <TextArea
-                    id={item.stateKey}
-                    rows={10}
-                    placeholder={item.placeholder}
-                    value={item.value}
-                    hasError={includes(state.errorValueKeys, item.stateKey)}
-                    onChange={this.buildChangeHandler(item.stateKey, item.storageKey)}
-                  />
-                </div>
-              )}
-            </div>
-          )}
-          <div className={c.submitRow}>
-            <Button type="submit" skin="primary" maximized>メールを作成（ポイ）</Button>
+        </div>
+        {buildItems(state).map((items, i) =>
+          <div key={i} className={c.row}>
+            {items.map((item) =>
+              <div key={item.label} className={c.column}>
+                <label
+                  className={c.label(item.required)}
+                  htmlFor={item.stateKey}
+                >
+                  {item.label}
+                </label>
+                <TextArea
+                  id={item.stateKey}
+                  rows={10}
+                  placeholder={item.placeholder}
+                  value={item.value}
+                  hasError={includes(state.errorValueKeys, item.stateKey)}
+                  onChange={this.buildChangeHandler(item.stateKey, item.storageKey)}
+                />
+              </div>
+            )}
           </div>
+        )}
+        <div className={c.submitRow}>
+          <Button type="submit" skin="primary" maximized>メールを作成（ポイ）</Button>
         </div>
       </form>
     );
