@@ -15,6 +15,7 @@ interface Props extends React.Props<any> {
 }
 
 interface State {
+  errorValueKeys: string[];
   name?: string;
   firstContent?: string;
   secondContent?: string;
@@ -46,10 +47,12 @@ const c = BEM('DailyReportForm', (block, element) => ({
 }));
 
 export class DailyReportForm extends React.Component<Props, State> {
-  state: State = {};
+  state: State = {
+    errorValueKeys: [],
+  };
 
   render() {
-    const {props, state} = this;
+    const {state} = this;
     return (
       <form className={c.root} onSubmit={this.handleSubmit}>
         <h1 className={c.heading}>ニッポーイボーイ</h1>
@@ -59,6 +62,7 @@ export class DailyReportForm extends React.Component<Props, State> {
               <Input
                 value={state.name}
                 onChange={this.buildChangeHandler('name')}
+                hasError={includes(state.errorValueKeys, 'name')}
                 maximized
               />
             </label>
@@ -73,6 +77,7 @@ export class DailyReportForm extends React.Component<Props, State> {
                     rows={10}
                     placeholder={item.placeholder}
                     value={item.value}
+                    hasError={includes(state.errorValueKeys, item.stateKey)}
                     onChange={this.buildChangeHandler(item.stateKey)}
                   />
                 </label>
@@ -94,6 +99,7 @@ export class DailyReportForm extends React.Component<Props, State> {
       return;
     }
     if (RequiredValueKeys.every((key) => (state as any)[key] != null)) {
+      this.setState({ errorValueKeys: [] });
       props.onSubmit({
         name: state.name,
         firstContent: state.firstContent,
@@ -101,11 +107,18 @@ export class DailyReportForm extends React.Component<Props, State> {
         thirdContent: state.thirdContent,
         fourthContent: state.fourthContent,
       });
+    } else {
+      this.setState({
+        errorValueKeys: RequiredValueKeys.filter((key) => (state  as any)[key] == null),
+      });
     }
   };
 
   private buildChangeHandler(key: string) {
-    return (value: string) => this.setState({[key]: value});
+    return (value: string) => this.setState({
+      errorValueKeys: this.state.errorValueKeys,
+      [key]: value,
+    });
   }
 }
 
@@ -133,4 +146,8 @@ function buildItems(state: State): Item[][] {
       },
     ],
   ];
+}
+
+function includes<T>(array: T[], value: T): boolean {
+  return array.indexOf(value) !== -1;
 }

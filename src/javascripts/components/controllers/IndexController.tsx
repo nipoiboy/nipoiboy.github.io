@@ -54,6 +54,6 @@ function buildOptionalBody(report: DailyReport): string {
   return report.fourthContent == null ? '' :
 `
 
-4、今日の目標と振り返り
+4、その他
 ${report.fourthContent}`;
 }
