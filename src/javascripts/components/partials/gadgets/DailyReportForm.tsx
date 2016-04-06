@@ -39,6 +39,7 @@ interface Item {
   storageKey: string;
   placeholder?: string;
   value?: string;
+  required?: boolean;
 }
 
 const StorageKeys = {
@@ -66,7 +67,9 @@ const c = BEM('DailyReportForm', (block, element) => ({
   row: element('row'),
   column: element('column'),
   nameColumn: element('column name'),
-  label: element('label'),
+  label: (required: boolean = false) => element('label', {
+    required,
+  }),
   submitRow: element('row submit'),
 }));
 
@@ -87,7 +90,7 @@ export class DailyReportForm extends React.Component<Props, State> {
           <h1 className={c.heading}>ニッポーイボーイ</h1>
           <div className={c.row}>
             <div className={c.nameColumn}>
-              <label className={c.label} htmlFor="name">(*) 氏名</label>
+              <label className={c.label(true)} htmlFor="name">氏名</label>
               <Input
                 id="name"
                 value={state.name}
@@ -101,7 +104,12 @@ export class DailyReportForm extends React.Component<Props, State> {
             <div key={i} className={c.row}>
               {items.map((item) =>
                 <div key={item.label} className={c.column}>
-                  <label className={c.label} htmlFor={item.stateKey}>{item.label}</label>
+                  <label
+                    className={c.label(item.required)}
+                    htmlFor={item.stateKey}
+                  >
+                    {item.label}
+                  </label>
                   <TextArea
                     id={item.stateKey}
                     rows={10}
@@ -199,22 +207,25 @@ export class DailyReportForm extends React.Component<Props, State> {
 function buildItems(state: State): Item[][] {
   return [
     [
-      { label: '(*) 本日の業務',
+      { label: '本日の業務',
         value: state.firstContent,
         stateKey: 'firstContent',
         storageKey: StorageKeys.dailyReport.firstContent,
+        required: true,
       },
-      { label: '(*) 明日の業務',
+      { label: '明日の業務',
         value: state.secondContent,
         stateKey: 'secondContent',
         storageKey: StorageKeys.dailyReport.secondContent,
+        required: true,
       },
     ],
     [
-      { label: '(*) 本日の業務で気付いたこと・学んだこと',
+      { label: '本日の業務で気付いたこと・学んだこと',
         value: state.thirdContent,
         stateKey: 'thirdContent',
         storageKey: StorageKeys.dailyReport.thirdContent,
+        required: true,
       },
       { label: 'その他',
         placeholder: '今日頑張っていた人などをあげてみよう！（ポイ）',
