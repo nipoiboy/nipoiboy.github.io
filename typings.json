@@ -1,0 +1,10 @@
+{
+  "ambientDevDependencies": {
+    "classnames": "registry:dt/classnames#0.0.0+20160316155526",
+    "fastclick": "registry:dt/fastclick#1.0.3+20160317120654",
+    "history": "github:DefinitelyTyped/DefinitelyTyped/react-router/history.d.ts#e42fc3e47141c1d94a7b776357f64940de33843e",
+    "react": "registry:dt/react#0.14.0+20160319053454",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160316155526",
+    "react-router": "registry:dt/react-router#2.0.0+20160330124659"
+  }
+}
