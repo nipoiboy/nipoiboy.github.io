@@ -6,6 +6,11 @@ import {Router, browserHistory} from 'react-router';
 import * as FastClick from 'fastclick';
 
 /**
+ * Apply ES6 shim
+ */
+import 'es6-shim';
+
+/**
  * Get application container
  */
 const container = document.getElementById('application-container');

@@ -4,6 +4,8 @@ import * as React from 'react';
 
 import {DailyReport} from '../../constants/DailyReport';
 
+import {today} from '../../misc/Date';
+
 import {IndexView} from '../views/IndexView';
 
 export class IndexController extends React.Component<any, any> {
@@ -23,18 +25,6 @@ export class IndexController extends React.Component<any, any> {
     const href = `mailto:${to}?cc=${cc}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     location.href = href;
   };
-}
-
-function today(): string {
-  const now = new Date;
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const date = now.getDate();
-  return `${year}/${forceTwoDigit(month)}/${forceTwoDigit(date)}`;
-}
-
-function forceTwoDigit(n: number): string {
-  return `0${n}`.slice(-2);
 }
 
 function buildRequiredBody(report: DailyReport): string {
