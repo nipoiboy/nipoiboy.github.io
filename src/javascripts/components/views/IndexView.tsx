@@ -16,7 +16,10 @@ export class IndexView extends React.Component<Props, any> {
   render() {
     const {props} = this;
     return (
-      <DailyReportFormContainerLayout heading="ニッポーイボーイ">
+      <DailyReportFormContainerLayout
+        heading="NIPPOiboy"
+        headingRuby="ニッポーイボーイ"
+      >
         <DailyReportForm onSubmit={props.onDailyReportSubmit} />
       </DailyReportFormContainerLayout>
     );

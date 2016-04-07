@@ -121,7 +121,7 @@ export class DailyReportForm extends React.Component<Props, State> {
           </div>
         )}
         <div className={c.submitRow}>
-          <Button type="submit" skin="primary" maximized>メールを作成（ポイ）</Button>
+          <Button type="submit" skin="primary" maximized>ポイする</Button>
         </div>
       </form>
     );
