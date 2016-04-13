@@ -145,7 +145,7 @@ export class DailyReportForm extends React.Component<Props, State> {
 
   private buildChangeHandler(key: string, storageCacheKey: string) {
     return (value: string) => {
-      const nextState = Object.assign({}, this.state, { [key]: value });
+      const nextState = Object.assign({}, this.state, {[key]: value});
       this.setState(nextState);
       this.cacheOnStorage(value, storageCacheKey);
     };
@@ -162,8 +162,8 @@ export class DailyReportForm extends React.Component<Props, State> {
     ])
       .then(([lastSavedAt, name, firstContent, secondContent, thirdContent, fourthContent]: any[]) =>
         lastSavedAt === today()
-          ? { name, firstContent, secondContent, thirdContent, fourthContent }
-          : { name }
+          ? {name, firstContent, secondContent, thirdContent, fourthContent}
+          : {name}
       )
       .then((cachedDailyReport) => {
         const nextState = Object.assign({}, this.state, cachedDailyReport);
@@ -188,18 +188,18 @@ export class DailyReportForm extends React.Component<Props, State> {
   }
 
   private satisfiesFormRequirements(): boolean {
-    const state = this.state as any;
-    return RequiredValueKeys.every((key) => state[key] != null);
+    const requirementSatisfied = detectValueExistence(this.state);
+    return RequiredValueKeys.every(requirementSatisfied);
   }
 
   private clearErrors(): void {
-    this.setState({ errorValueKeys: [] });
+    this.setState({errorValueKeys: []});
   }
 
   private setErrors(): void {
-    const state = this.state as any;
-    const errorValueKeys = RequiredValueKeys.filter((key) => state[key] == null);
-    this.setState({ errorValueKeys });
+    const requirementNotSatisfied = detectValueAbsence(this.state);
+    const errorValueKeys = RequiredValueKeys.filter(requirementNotSatisfied);
+    this.setState({errorValueKeys});
   }
 }
 
@@ -238,4 +238,13 @@ function buildItems(state: State): Item[][] {
 
 function includes<T>(array: T[], value: T): boolean {
   return array.indexOf(value) !== -1;
+}
+
+function detectValueExistence(state: State) {
+  const s = state as any;
+  return (key: string) => (s[key] != null && s[key] !== '');
+}
+
+function detectValueAbsence(state: State) {
+  return (key: string) => !detectValueExistence(state)(key);
 }
