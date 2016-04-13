@@ -20,8 +20,10 @@ const style = {
       height: '70px',
       margin: '50px auto 0',
       [Device.Mobile]: {
+        width: '100%',
+        maxWidth: '100%',
         height: `${Height.Large}px`,
-        marginTop: '20px',
+        margin: '50px 0 0 ',
       },
     },
   },
