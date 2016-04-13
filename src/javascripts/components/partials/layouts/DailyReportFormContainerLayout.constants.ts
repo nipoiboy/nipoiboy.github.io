@@ -1,6 +1,6 @@
 'use strict';
 
-import {BEM} from '../../misc/BEM';
+import {BEM} from '../base/utils';
 
 const bem = BEM('DailyReportFormContainerLayout');
 

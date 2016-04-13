@@ -8,11 +8,11 @@ import {DailyReport} from '../../../constants/DailyReport';
 
 import {today} from '../../../misc/Date';
 
-import {ClassNames as CN} from '../../../styles/gadgets/DailyReportForm.constants';
-
 import {Input} from '../elements/Input';
 import {Button} from '../elements/Button';
 import {TextArea} from '../elements/TextArea';
+
+import {ClassNames as CN} from './DailyReportForm.constants';
 
 interface Props extends React.Props<any> {
   onSubmit?(dailyReport: DailyReport): any;

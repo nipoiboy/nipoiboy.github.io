@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import {ClassNames as CN} from '../../../styles/layouts/DailyReportFormContainerLayout.constants';
+import {ClassNames as CN} from './DailyReportFormContainerLayout.constants';
 
 interface Props extends React.Props<any> {
   heading: string;

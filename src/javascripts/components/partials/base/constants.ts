@@ -1,6 +1,6 @@
 'use strict';
 
-import {mediaQuery} from '../../misc/StyleUtils';
+import {mediaQuery} from './utils';
 
 export const MaxWidth = 1024;
 

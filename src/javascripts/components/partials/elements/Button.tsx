@@ -3,8 +3,7 @@
 import * as React from 'react';
 import * as classnames from 'classnames';
 
-import {BEM} from '../../../misc/BEM';
-import {ClassNames as CN} from '../../../styles/elements/Button.constants';
+import {ClassNames as CN} from './Button.constants';
 
 type Shape = 'round' | 'circle';
 

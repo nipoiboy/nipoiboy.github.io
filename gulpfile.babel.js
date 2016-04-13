@@ -34,15 +34,19 @@ const Config = {
   JavaScript: {
     src: Dir.src('javascripts/bundle.ts'),
     target: [
-      Dir.src('javascripts/**/*'),
-      `!${Dir.src('javascripts/styles/**/*')}`,
+      Dir.src('javascripts/**/*.ts'),
+      `!${Dir.src('javascripts/**/*.constants.ts')}`,
+      `!${Dir.src('javascripts/**/*.style.ts')}`,
     ],
     dest: Dir.dest('javascripts'),
     file: 'application.js',
   },
   CSS: {
-    src: Dir.src('javascripts/styles/**/*.style.ts'),
-    target: Dir.src('javascripts/styles/**/*.ts'),
+    src: Dir.src('javascripts/**/*.style.ts'),
+    target: [
+      Dir.src('javascripts/**/*.constants.ts'),
+      Dir.src('javascripts/**/*.style.ts'),
+    ],
     dest: Dir.dest('stylesheets'),
     file: 'application.css',
   },

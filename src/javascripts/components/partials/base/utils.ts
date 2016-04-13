@@ -10,6 +10,13 @@ interface MediaQueryProperties {
   maxWidth?: string;
 }
 
+export function BEM<A>(blockName: string) {
+  return {
+    block: () => blockName,
+    element: (elementName: string) => `${blockName}__${elementName}`,
+  };
+}
+
 export function mediaQuery(properties: MediaQueryProperties): string {
   const expressionsQuery = Object.keys(properties)
     .filter((key: string) => key !== 'op' && key !== 'type')
