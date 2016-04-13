@@ -2,20 +2,20 @@
 
 import * as React from 'react';
 
-import {BEM} from '../../../misc/BEM';
+import {ClassNames as CN} from '../../../styles/layouts/DailyReportFormContainerLayout.constants';
 
 interface Props extends React.Props<any> {
   heading: string;
   headingRuby?: string;
 }
 
-const c = BEM('DailyReportFormContainerLayout', (block, element) => ({
-  root: block(),
-  inner: element('inner'),
-  heading: element('heading'),
-  headingRuby: element('heading-ruby'),
-  form: element('form'),
-}));
+const c = {
+  root: CN.root.base,
+  inner: CN.inner.base,
+  heading: CN.heading.base,
+  headingRuby: CN.headingRuby.base,
+  form: CN.form.base,
+};
 
 export class DailyReportFormContainerLayout extends React.Component<Props, any> {
   render() {

@@ -1,8 +1,9 @@
 'use strict';
 
 import * as React from 'react';
+import * as classnames from 'classnames';
 
-import {BEM} from '../../../misc/BEM';
+import {ClassNames as CN} from '../../../styles/elements/Input.constants';
 
 export interface Props extends React.Props<any> {
   id?: string;
@@ -14,13 +15,13 @@ export interface Props extends React.Props<any> {
   onChange?(value: string): any;
 }
 
-const c = BEM('Input', (block, element) => ({
-  root: (props: Props) => block([
-    { maximized: props.maximized,
-      'has-error': props.hasError
+const c = {
+  root: (props: Props) => classnames(CN.root.base, [
+    { [CN.root.mods.maximized]: props.maximized,
+      [CN.root.mods.hasError]: props.hasError,
     },
   ]),
-}));
+};
 
 export class Input extends React.Component<Props, any> {
   render() {

@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import {Link} from 'react-router';
+import * as classnames from 'classnames';
 
-import {BEM} from '../../../misc/BEM';
+import {ClassNames as CN} from '../../../styles/elements/Anchor.constants';
 
 type Skin = 'inherit';
 
@@ -21,14 +22,16 @@ export interface Props extends PropsWithoutSkin {
   skin?: Skin;
 }
 
-const c = BEM('Anchor', (block, element) => ({
-  root: (props: Props) => block([
-    `skin_${props.skin || 'default'}`,
-    { maximized: props.maximized,
-      noUnderline: props.noUnderline
-    }
+const c = {
+  root: (props: Props) => classnames(CN.root.base, [
+    { [CN.root.mods.maximized]: props.maximized,
+      [CN.root.mods.noUnderline]: props.noUnderline,
+    },
+    { [CN.root.mods.skin.default]: props.skin == null,
+      [CN.root.mods.skin.inherit]: props.skin === 'inherit',
+    },
   ]),
-}));
+};
 
 export class Anchor extends React.Component<Props, any> {
   static defaultProps = {

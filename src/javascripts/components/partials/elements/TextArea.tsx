@@ -1,8 +1,9 @@
 'use strict';
 
 import * as React from 'react';
+import * as classnames from 'classnames';
 
-import {BEM} from '../../../misc/BEM';
+import {ClassNames as CN} from '../../../styles/elements/TextArea.constants';
 
 export interface Props extends React.Props<any> {
   id?: string;
@@ -14,11 +15,11 @@ export interface Props extends React.Props<any> {
   onChange?(value: string): any;
 }
 
-const c = BEM('TextArea', (block, element) => ({
-  root: (props: Props) => block([
-    {'has-error': props.hasError}
+const c = {
+  root: (props: Props) => classnames(CN.root.base, [
+    { [CN.root.mods.hasError]: props.hasError },
   ]),
-}));
+};
 
 export class TextArea extends React.Component<Props, any> {
   render() {

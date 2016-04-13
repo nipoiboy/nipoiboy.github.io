@@ -2,11 +2,13 @@
 
 import * as React from 'react';
 import * as Storage from 'localforage';
+import * as classnames from 'classnames';
 
 import {DailyReport} from '../../../constants/DailyReport';
 
 import {today} from '../../../misc/Date';
-import {BEM} from '../../../misc/BEM';
+
+import {ClassNames as CN} from '../../../styles/gadgets/DailyReportForm.constants';
 
 import {Input} from '../elements/Input';
 import {Button} from '../elements/Button';
@@ -60,18 +62,18 @@ const RequiredValueKeys = [
   'thirdContent',
 ];
 
-const c = BEM('DailyReportForm', (block, element) => ({
-  root: block(),
-  inner: element('inner'),
-  heading: element('heading'),
-  row: element('row'),
-  column: element('column'),
-  nameColumn: element('column name'),
-  label: (required: boolean = false) => element('label', {
-    required,
+const c = {
+  root: CN.root.base,
+  row: CN.row.base,
+  column: CN.column.base,
+  nameColumn: CN.nameColumn.base,
+  label: (required: boolean = false) => classnames(CN.label.base, {
+    [CN.label.mods.required]: required,
   }),
-  submitRow: element('row submit'),
-}));
+  submitRow: classnames(CN.row.base, {
+    [CN.row.mods.submit]: true,
+  }),
+};
 
 export class DailyReportForm extends React.Component<Props, State> {
   state: State = {
