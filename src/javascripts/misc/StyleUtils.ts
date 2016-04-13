@@ -3,7 +3,7 @@
 import * as _ from 'lodash';
 
 interface MediaQueryProperties {
-  [ key: string ]: any;
+  [key: string]: any;
   op?: string;
   type?: string;
   minWidth?: string;

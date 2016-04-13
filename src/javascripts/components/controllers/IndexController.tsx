@@ -16,7 +16,7 @@ export class IndexController extends React.Component<any, any> {
   }
 
   private handleDailyReportSubmit = (report: DailyReport) => {
-    const { to, cc, subject, body } = buildMailComponents(report);
+    const {to, cc, subject, body} = buildMailComponents(report);
     const href = `mailto:${to}?cc=${cc}&subject=${subject}&body=${body}`;
     location.href = href;
   };
