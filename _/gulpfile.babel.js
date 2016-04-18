@@ -27,7 +27,7 @@ import sequence from 'run-sequence';
  */
 const Dir = {
   src: (path = '') => `./src${path && `/${path}`}`,
-  dest: (path = '') => `./assets${path && `/${path}`}`,
+  dest: (path = '') => `../assets${path && `/${path}`}`,
 };
 
 const Config = {
@@ -100,7 +100,7 @@ gulp.task('css', () => {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('clean', () => del(Dir.dest()));
+gulp.task('clean', () => del(Dir.dest(), {force: true}));
 
 gulp.task('build', () => sequence(['javascript', 'css']));
 

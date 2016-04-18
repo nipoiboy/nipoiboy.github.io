@@ -8,7 +8,7 @@
     "clean": "gulp clean",
     "develop": "gulp develop",
     "build": "npm run clean && NODE_ENV=production gulp build",
-    "serve": "http-server -d false"
+    "serve": "http-server .. -d false"
   },
   "author": "",
   "license": "ISC",
