@@ -33,7 +33,7 @@
     "gulp-util": "^3.0.7",
     "http-server": "^0.9.0",
     "localforage": "^1.4.0",
-    "lodash": "^4.9.0",
+    "lodash": "^4.11.1",
     "menthe": "0.0.9",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
