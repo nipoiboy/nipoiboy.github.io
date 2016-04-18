@@ -16,9 +16,9 @@ export interface Props extends React.Props<any> {
 }
 
 const c = {
-  root: (props: Props) => classnames(CN.root.base, [
-    { [CN.root.mods.hasError]: props.hasError },
-  ]),
+  root: (props: Props) => classnames(CN.root.base, {
+    [CN.root.mods.hasError]: props.hasError,
+  }),
 };
 
 export class TextArea extends React.Component<Props, any> {

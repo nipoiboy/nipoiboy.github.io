@@ -9,7 +9,7 @@ interface ContainerOptions {
 export const container = (options: ContainerOptions = {}) => ({
   position: 'relative',
   width: '100%',
-  maxWidth: `${MaxWidth}`,
+  maxWidth: MaxWidth,
   margin: '0 auto',
   padding: options.noPadding ? 0 : '0 15px',
   [Device.Tablet]: {
