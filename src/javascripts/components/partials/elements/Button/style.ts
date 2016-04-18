@@ -2,9 +2,9 @@
 
 import {Color as MentheColor, Px, unit} from 'menthe/utils';
 
-import {Height, Color} from '../base/constants';
+import {Height, Color} from '../../base/constants';
 
-import {ClassNames as CN} from './Button.constants';
+import {ClassNames as CN} from './constants';
 
 interface SkinOptions {
   bgColor: MentheColor;

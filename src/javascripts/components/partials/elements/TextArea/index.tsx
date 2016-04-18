@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as classnames from 'classnames';
 
-import {ClassNames as CN} from './TextArea.constants';
+import {ClassNames as CN} from './constants';
 
 export interface Props extends React.Props<any> {
   id?: string;

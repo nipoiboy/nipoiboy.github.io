@@ -4,7 +4,7 @@ import * as React from 'react';
 import {Link} from 'react-router';
 import * as classnames from 'classnames';
 
-import {ClassNames as CN} from './Anchor.constants';
+import {ClassNames as CN} from './constants';
 
 type Skin = 'inherit';
 

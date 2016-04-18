@@ -1,6 +1,6 @@
 'use strict';
 
-import {BEM} from '../base/bem';
+import {BEM} from '../../base/bem';
 
 const bem = BEM('Anchor');
 

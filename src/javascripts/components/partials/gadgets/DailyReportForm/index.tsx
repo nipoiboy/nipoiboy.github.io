@@ -4,15 +4,15 @@ import * as React from 'react';
 import * as Storage from 'localforage';
 import * as classnames from 'classnames';
 
-import {DailyReport} from '../../../constants/DailyReport';
+import {DailyReport} from '../../../../constants/DailyReport';
 
-import {today} from '../../../misc/Date';
+import {today} from '../../../../misc/Date';
 
-import {Input} from '../elements/Input';
-import {Button} from '../elements/Button';
-import {TextArea} from '../elements/TextArea';
+import {Input} from '../../elements/Input';
+import {Button} from '../../elements/Button';
+import {TextArea} from '../../elements/TextArea';
 
-import {ClassNames as CN} from './DailyReportForm.constants';
+import {ClassNames as CN} from './constants';
 
 interface Props extends React.Props<any> {
   heading: string;

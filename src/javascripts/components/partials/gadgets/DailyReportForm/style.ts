@@ -1,9 +1,9 @@
 'use strict';
 
-import {Height, Device} from '../base/constants';
-import {quote} from '../base/utils';
+import {Height, Device} from '../../base/constants';
+import {quote} from '../../base/utils';
 
-import {ClassNames as CN} from './DailyReportForm.constants';
+import {ClassNames as CN} from './constants';
 
 const style = {
   heading: {

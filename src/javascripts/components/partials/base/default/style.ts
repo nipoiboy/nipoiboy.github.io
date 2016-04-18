@@ -1,6 +1,6 @@
 'use strict';
 
-import {Default, Color} from './constants';
+import {Default, Color} from '../constants';
 
 export default {
   '*': {

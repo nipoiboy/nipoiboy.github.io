@@ -2,9 +2,9 @@
 
 import {Color as MentheColor} from 'menthe/utils';
 
-import {Color} from '../base/constants';
+import {Color} from '../../base/constants';
 
-import {ClassNames as CN} from './Anchor.constants';
+import {ClassNames as CN} from './constants';
 
 interface SkinOptions {
   fontColor: string | MentheColor;

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import {ClassNames as CN} from './DailyReportFormContainerLayout.constants';
+import {ClassNames as CN} from './constants';
 
 const c = {
   root: CN.root.base,

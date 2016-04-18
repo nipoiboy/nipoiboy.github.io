@@ -1,9 +1,9 @@
 'use strict';
 
-import {Height, Device} from '../base/constants';
-import {container} from '../base/mixins';
+import {Height, Device} from '../../base/constants';
+import {container} from '../../base/mixins';
 
-import {ClassNames as CN} from './DailyReportFormContainerLayout.constants';
+import {ClassNames as CN} from './constants';
 
 export const style = {
   root: {

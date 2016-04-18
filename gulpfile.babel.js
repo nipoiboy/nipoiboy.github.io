@@ -35,17 +35,17 @@ const Config = {
     src: Dir.src('javascripts/bundle.ts'),
     target: [
       Dir.src('javascripts/**/*'),
-      `!${Dir.src('javascripts/**/*.constants.ts')}`,
-      `!${Dir.src('javascripts/**/*.style.ts')}`,
+      `!${Dir.src('javascripts/**/constants.ts')}`,
+      `!${Dir.src('javascripts/**/style.ts')}`,
     ],
     dest: Dir.dest('javascripts'),
     file: 'application.js',
   },
   CSS: {
-    src: Dir.src('javascripts/**/*.style.ts'),
+    src: Dir.src('javascripts/**/style.ts'),
     target: [
-      Dir.src('javascripts/**/*.constants.ts'),
-      Dir.src('javascripts/**/*.style.ts'),
+      Dir.src('javascripts/**/constants.ts'),
+      Dir.src('javascripts/**/style.ts'),
     ],
     dest: Dir.dest('stylesheets'),
     file: 'application.css',
@@ -82,14 +82,14 @@ gulp.task('javascript', () => {
 gulp.task('css', () => {
   const {src, dest, file} = Config.CSS;
   return gulp.src(src)
-    .pipe(named())
+    .pipe(named((file) => file.path.split('/').slice(-3).join('/').replace(/\.ts$/, '')))
     .pipe(webpack({
       resolve: {
         extensions: ['', '.js', '.ts', '.tsx'],
       },
       module: {
         loaders: [
-          {test: /\.tsx?$/, loader: 'ts'},
+          {test: /\.ts$/, loader: 'ts'},
         ]
       },
     }))

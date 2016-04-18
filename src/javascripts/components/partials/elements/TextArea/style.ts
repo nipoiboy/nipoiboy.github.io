@@ -1,8 +1,8 @@
 'use strict';
 
-import {Color} from '../base/constants';
+import {Color} from '../../base/constants';
 
-import {ClassNames as CN} from './Input.constants';
+import {ClassNames as CN} from './constants';
 
 const style = {
   root: {
@@ -23,11 +23,6 @@ const style = {
         zIndex: 2,
       },
     },
-    maximized: {
-      display: 'inline-block',
-      width: '100%',
-      height: '100%',
-    },
     hasError: {
       '&, &:focus': {
         borderColor: Color.Red,
@@ -37,8 +32,7 @@ const style = {
 };
 
 export default {
-  [`.${CN.root.base}:not([type="checkbox"])`]: [style.root.base, {
-    [`&.${CN.root.mods.maximized}`]: style.root.maximized,
+  [`.${CN.root.base}`]: [style.root.base, {
     [`&.${CN.root.mods.hasError}`]: style.root.hasError,
   }],
 };
