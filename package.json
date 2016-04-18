@@ -34,7 +34,7 @@
     "http-server": "^0.9.0",
     "localforage": "^1.4.0",
     "lodash": "^4.9.0",
-    "menthe": "^0.0.4",
+    "menthe": "0.0.9",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-router": "^2.0.1",

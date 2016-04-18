@@ -1,12 +1,14 @@
 'use strict';
 
+import {Color as MentheColor} from 'menthe/utils';
+
 import {Color} from '../base/constants';
 
 import {ClassNames as CN} from './Anchor.constants';
 
 interface SkinOptions {
-  fontColor: string;
-  visitedFontColor?: string;
+  fontColor: string | MentheColor;
+  visitedFontColor?: string | MentheColor;
 }
 
 const applySkin = ({fontColor, visitedFontColor}: SkinOptions) => ({

@@ -1,18 +1,20 @@
 'use strict';
 
+import {unit, hex} from 'menthe/utils';
+
 import {mediaQuery} from './utils';
 
-export const MaxWidth = 1024;
+export const MaxWidth = unit(1024).px();
 
 const Breakpoints = {
-  Mobile: 481,
-  Desktop: 1000,
+  Mobile: unit(481).px(),
+  Desktop: unit(1000).px(),
 };
 
 export const Height = {
-  Large: 46,
-  Normal: 30,
-  Small: 24,
+  Large: unit(46).px(),
+  Normal: unit(30).px(),
+  Small: unit(24).px(),
 };
 
 export const Default = {
@@ -35,38 +37,38 @@ export const Default = {
     'Verdana',
     'sans-serif',
   ],
-  FontSize: 20,
+  FontSize: unit(20).px(),
 };
 
 export const Color = {
-  Black: '#4a4a4a',
-  Red: '#f44336',
-  Orange: '#FF9800',
-  Blue: '#03a9f4',
-  Green: '#2abb9b',
-  Yellow: '#FFC107',
-  LightGray: '#ecf0f1',
-  Gray: '#7f8c8d',
-  Cyan: '#00BCD4',
-  Brown: '#795548',
-  Background: '#f9f9f9',
+  Black: hex('#4a4a4a'),
+  Red: hex('#f44336'),
+  Orange: hex('#FF9800'),
+  Blue: hex('#03a9f4'),
+  Green: hex('#2abb9b'),
+  Yellow: hex('#FFC107'),
+  LightGray: hex('#ecf0f1'),
+  Gray: hex('#7f8c8d'),
+  Cyan: hex('#00BCD4'),
+  Brown: hex('#795548'),
+  Background: hex('#f9f9f9'),
 };
 
 export const Device = {
   Mobile: mediaQuery({
-    maxWidth: `${Breakpoints.Mobile}px`,
+    maxWidth: Breakpoints.Mobile,
   }),
   MobileOrTablet: mediaQuery({
-    maxWidth: `${Breakpoints.Desktop - 1}px`,
+    maxWidth: Breakpoints.Desktop.sub(1),
   }),
   Tablet: mediaQuery({
-    minWidth: `${Breakpoints.Mobile + 1}px`,
-    maxWidth: `${Breakpoints.Desktop - 1}px`,
+    minWidth: Breakpoints.Mobile.add(1),
+    maxWidth: Breakpoints.Desktop.sub(1),
   }),
   TabletOrDesktop: mediaQuery({
-    minWidth: `${Breakpoints.Mobile + 1}px`,
+    minWidth: Breakpoints.Mobile.add(1),
   }),
   Desktop: mediaQuery({
-    minWidth: `${Breakpoints.Desktop}px`,
+    minWidth: Breakpoints.Desktop,
   }),
 };

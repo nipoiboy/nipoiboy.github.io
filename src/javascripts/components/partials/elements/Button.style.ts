@@ -1,6 +1,6 @@
 'use strict';
 
-import {Color as MentheColor, hex} from 'menthe';
+import {Color as MentheColor, Px, unit} from 'menthe/utils';
 
 import {Height, Color} from '../base/constants';
 
@@ -17,50 +17,58 @@ interface OutlinedSkinOptions {
 }
 
 interface SizeOptions {
-  height: number;
-  horizontalPadding: number;
+  height: Px;
+  horizontalPadding: Px;
   fontSize: string;
 }
 
 const DefaultHeight = Height.Normal;
 const SmallHeight = Height.Small;
 const LargeHeight = Height.Large;
-const DefaultPadding = 13;
-const SmallPadding = 10;
-const LargePadding = 18;
-const BorderWidth = 1;
-const RoundShapeRadius = 3;
-const TransitionDuration = .12;
-const DefaultSkinColor = hex(Color.LightGray);
+const DefaultPadding = unit(13).px();
+const SmallPadding = unit(10).px();
+const LargePadding = unit(18).px();
+const BorderWidth = unit(2).px();
+const RoundShapeRadius = unit(3).px();
+const TransitionDuration = unit(.12).s();
+const DefaultSkinColor = Color.LightGray;
 
 const applySkin = ({bgColor, fontColor}: SkinOptions) => ({
-  backgroundColor: bgColor.toHEX(),
-  color: fontColor ? fontColor.toHEX() : '#fff',
-  transition: `background-color ${TransitionDuration}s ease`,
+  backgroundColor: bgColor,
+  color: fontColor || '#fff',
+  transition: `background-color ${TransitionDuration} ease`,
   '&:active': {
-    backgroundColor: bgColor.darken(.15).toHEX(),
+    backgroundColor: bgColor.darken(.15),
   },
 });
 
 const applyOutlinedSkin = ({borderColor, fontColor}: OutlinedSkinOptions) => ({
   backgroundColor: 'transparent',
-  border: `BorderWidth solid ${borderColor.toHEX()}`,
-  color: fontColor ? fontColor.toHEX() : borderColor.toHEX(),
-  transition: `background-color ${TransitionDuration}s ease, color ${TransitionDuration}s ease`,
-  '&:hover': applySkin({bgColor: borderColor}),
+  border: `${BorderWidth} solid ${borderColor}`,
+  color: fontColor || borderColor,
+  transition: `background-color ${TransitionDuration} ease, color ${TransitionDuration} ease`,
+  '&:hover': {
+    backgroundColor: borderColor,
+    color: fontColor || '#fff',
+    transition: `background-color ${TransitionDuration} ease, border-color ${TransitionDuration} ease`,
+    '&:active': {
+      backgroundColor: borderColor.darken(.15),
+      borderColor: borderColor.darken(.15),
+    },
+  },
 });
 
 const applySize = ({height, horizontalPadding, fontSize}: SizeOptions) => ({
   fontSize: fontSize,
   [`&:not(.${CN.root.mods.maximized})`]: {
-    height: `${height}px`,
-    padding: `0 ${horizontalPadding}px`,
-    lineHeight: `${height}px`,
+    height: `${height}`,
+    padding: `0 ${horizontalPadding}`,
+    lineHeight: `${height}`,
     [`&.${CN.root.mods.shape.default}, &.${CN.root.mods.shape.circle}`]: {
-      width: `${height}px`,
+      width: `${height}`,
     },
     [`&.${CN.root.mods.outlined}`]: {
-      lineHeight: `${(height - BorderWidth * 2)}px`,
+      lineHeight: `${height.sub(BorderWidth.mul(2))}`,
     },
     [`&.${CN.root.mods.noPadding}`]: {
       padding: 0,
@@ -96,16 +104,16 @@ const style = {
           fontColor: DefaultSkinColor.darken(.4),
         }),
         primary: applySkin({
-          bgColor: hex(Color.Cyan),
+          bgColor: Color.Cyan,
         }),
         success: applySkin({
-          bgColor: hex(Color.Green),
+          bgColor: Color.Green,
         }),
         warning: applySkin({
-          bgColor: hex(Color.Yellow),
+          bgColor: Color.Yellow,
         }),
         danger: applySkin({
-          bgColor: hex(Color.Red),
+          bgColor: Color.Red,
         }),
       },
     },
@@ -116,16 +124,16 @@ const style = {
           fontColor: DefaultSkinColor.darken(.4),
         }),
         primary: applyOutlinedSkin({
-          borderColor: hex(Color.Cyan),
+          borderColor: Color.Cyan,
         }),
         success: applyOutlinedSkin({
-          borderColor: hex(Color.Green),
+          borderColor: Color.Green,
         }),
         warning: applyOutlinedSkin({
-          borderColor: hex(Color.Yellow),
+          borderColor: Color.Yellow,
         }),
         danger: applyOutlinedSkin({
-          borderColor: hex(Color.Red),
+          borderColor: Color.Red,
         }),
       },
     },

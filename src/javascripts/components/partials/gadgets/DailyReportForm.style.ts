@@ -22,7 +22,7 @@ const style = {
       [Device.Mobile]: {
         width: '100%',
         maxWidth: '100%',
-        height: `${Height.Large}px`,
+        height: Height.Large,
         margin: '50px 0 0 ',
       },
     },

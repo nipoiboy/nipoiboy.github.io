@@ -1,13 +1,14 @@
 'use strict';
 
+import {Px} from 'menthe/utils';
 import * as _ from 'lodash';
 
 interface MediaQueryProperties {
   [key: string]: any;
   op?: string;
   type?: string;
-  minWidth?: string;
-  maxWidth?: string;
+  minWidth?: Px | string;
+  maxWidth?: Px | string;
 }
 
 export function mediaQuery(properties: MediaQueryProperties): string {

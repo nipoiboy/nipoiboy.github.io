@@ -14,7 +14,7 @@ export default {
     backgroundColor: Color.Background,
     color: Color.Black,
     fontFamily: ['Muli', ...Default.FontFamily].join(','),
-    fontSize: `${Default.FontSize}px`,
+    fontSize: Default.FontSize,
     fontWeight: 300,
     lineHeight: '2em',
   },
