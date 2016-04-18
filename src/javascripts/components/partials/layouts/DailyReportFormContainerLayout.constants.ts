@@ -11,13 +11,4 @@ export const ClassNames = {
   inner: {
     base: bem.element('inner'),
   },
-  heading: {
-    base: bem.element('heading'),
-  },
-  headingRuby: {
-    base: bem.element('heading-ruby'),
-  },
-  form: {
-    base: bem.element('form'),
-  },
 };

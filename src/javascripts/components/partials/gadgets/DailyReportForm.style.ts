@@ -1,10 +1,31 @@
 'use strict';
 
 import {Height, Device} from '../base/constants';
+import {quote} from '../base/utils';
 
 import {ClassNames as CN} from './DailyReportForm.constants';
 
 const style = {
+  heading: {
+    base: {
+      marginBottom: '50px',
+      fontFamily: 'Quicksand',
+      fontSize: '3rem',
+      fontWeight: 'bold',
+      lineHeight: '1em',
+      textAlign: 'center',
+      [Device.Mobile]: {
+        fontSize: '2.3rem',
+      },
+    },
+  },
+  headingRuby: {
+    base: {
+      fontSize: '.55rem',
+      textAlign: 'center',
+      letterSpacing: '.55rem',
+    },
+  },
   row: {
     base: {
       [Device.Desktop]: {
@@ -49,13 +70,15 @@ const style = {
     },
     required: {
       '&::before': {
-        content: '"(*) "',
+        content: quote('(*) '),
       },
     },
   },
 };
 
 export default {
+  [`.${CN.heading.base}`]: style.heading.base,
+  [`.${CN.headingRuby.base}`]: style.headingRuby.base,
   [`.${CN.row.base}`]: [style.row.base, {
     [`&.${CN.row.mods.submit}`]: style.row.submit,
   }],

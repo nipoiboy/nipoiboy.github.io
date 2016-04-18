@@ -8,6 +8,12 @@ export const ClassNames = {
   root: {
     base: bem.block(),
   },
+  heading: {
+    base: bem.element('heading'),
+  },
+  headingRuby: {
+    base: bem.element('heading-ruby'),
+  },
   row: {
     base: bem.element('row'),
     mods: {

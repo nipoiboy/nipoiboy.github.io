@@ -15,6 +15,8 @@ import {TextArea} from '../elements/TextArea';
 import {ClassNames as CN} from './DailyReportForm.constants';
 
 interface Props extends React.Props<any> {
+  heading: string;
+  headingRuby?: string;
   onSubmit?(dailyReport: DailyReport): any;
 }
 
@@ -64,6 +66,8 @@ const RequiredValueKeys = [
 
 const c = {
   root: CN.root.base,
+  heading: CN.heading.base,
+  headingRuby: CN.headingRuby.base,
   row: CN.row.base,
   column: CN.column.base,
   nameColumn: CN.nameColumn.base,
@@ -85,47 +89,57 @@ export class DailyReportForm extends React.Component<Props, State> {
   }
 
   render() {
-    const {state} = this;
+    const {props, state} = this;
     return (
-      <form className={c.root} onSubmit={this.handleSubmit}>
-        <div className={c.row}>
-          <div className={c.nameColumn}>
-            <label className={c.label(true)} htmlFor="name">氏名</label>
-            <Input
-              id="name"
-              value={state.name}
-              onChange={this.buildChangeHandler('name', StorageKeys.dailyReport.name)}
-              hasError={includes(state.errorValueKeys, 'name')}
-              maximized
-            />
+      <div className={c.root}>
+        <h1 className={c.heading}>
+          <ruby>
+            {props.heading}
+            {props.headingRuby &&
+              <rt className={c.headingRuby}>{props.headingRuby}</rt>
+            }
+          </ruby>
+        </h1>
+        <form onSubmit={this.handleSubmit}>
+          <div className={c.row}>
+            <div className={c.nameColumn}>
+              <label className={c.label(true)} htmlFor="name">氏名</label>
+              <Input
+                id="name"
+                value={state.name}
+                onChange={this.buildChangeHandler('name', StorageKeys.dailyReport.name)}
+                hasError={includes(state.errorValueKeys, 'name')}
+                maximized
+              />
+            </div>
           </div>
-        </div>
-        {buildItems(state).map((items, i) =>
-          <div key={i} className={c.row}>
-            {items.map((item) =>
-              <div key={item.label} className={c.column}>
-                <label
-                  className={c.label(item.required)}
-                  htmlFor={item.stateKey}
-                >
-                  {item.label}
-                </label>
-                <TextArea
-                  id={item.stateKey}
-                  rows={10}
-                  placeholder={item.placeholder}
-                  value={item.value}
-                  hasError={includes(state.errorValueKeys, item.stateKey)}
-                  onChange={this.buildChangeHandler(item.stateKey, item.storageKey)}
-                />
-              </div>
-            )}
+          {buildItems(state).map((items, i) =>
+            <div key={i} className={c.row}>
+              {items.map((item) =>
+                <div key={item.label} className={c.column}>
+                  <label
+                    className={c.label(item.required)}
+                    htmlFor={item.stateKey}
+                  >
+                    {item.label}
+                  </label>
+                  <TextArea
+                    id={item.stateKey}
+                    rows={10}
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    hasError={includes(state.errorValueKeys, item.stateKey)}
+                    onChange={this.buildChangeHandler(item.stateKey, item.storageKey)}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+          <div className={c.submitRow}>
+            <Button type="submit" skin="primary" maximized>ポイする</Button>
           </div>
-        )}
-        <div className={c.submitRow}>
-          <Button type="submit" skin="primary" maximized>ポイする</Button>
-        </div>
-      </form>
+        </form>
+      </div>
     );
   }
 

@@ -11,6 +11,10 @@ interface MediaQueryProperties {
   maxWidth?: Px | string;
 }
 
+export function quote(value: string): string {
+  return `"${value}"`;
+}
+
 export function mediaQuery(properties: MediaQueryProperties): string {
   const expressionsQuery = Object.keys(properties)
     .filter((key: string) => key !== 'op' && key !== 'type')
