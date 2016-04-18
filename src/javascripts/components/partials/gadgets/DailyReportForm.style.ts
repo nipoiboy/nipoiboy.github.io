@@ -7,9 +7,8 @@ import {ClassNames as CN} from './DailyReportForm.constants';
 const style = {
   row: {
     base: {
-      display: 'flex',
-      [Device.Mobile]: {
-        display: 'block'
+      [Device.Desktop]: {
+        display: 'flex',
       },
       '& + &': {
         marginTop: '20px',
@@ -23,7 +22,7 @@ const style = {
         width: '100%',
         maxWidth: '100%',
         height: Height.Large,
-        margin: '50px 0 0 ',
+        margin: '50px 0 0',
       },
     },
   },
@@ -32,7 +31,7 @@ const style = {
       flex: 1,
       '& + &': {
         marginLeft: '1.5em',
-        [Device.Mobile]: {
+        [Device.MobileOrTablet]: {
           margin: 0,
         },
       },
@@ -50,7 +49,7 @@ const style = {
     },
     required: {
       '&::before': {
-        content: "(*) ",
+        content: '"(*) "',
       },
     },
   },
