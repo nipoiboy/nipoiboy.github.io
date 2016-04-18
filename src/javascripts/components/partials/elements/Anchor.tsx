@@ -34,10 +34,6 @@ const c = {
 };
 
 export class Anchor extends React.Component<Props, any> {
-  static defaultProps = {
-    style: {},
-  };
-
   render() {
     const {props} = this;
     return props.to ? (
