@@ -71,7 +71,7 @@ gulp.task('javascript', () => {
         loaders: [
           {test: /\.tsx?$/, loader: 'ts'},
           {test: /\.js$/, loader: 'transform?envify'},
-        ]
+        ],
       },
     }))
     .pipe(buffer())
@@ -90,7 +90,7 @@ gulp.task('css', () => {
       module: {
         loaders: [
           {test: /\.ts$/, loader: 'ts'},
-        ]
+        ],
       },
     }))
     .pipe(menthe())
